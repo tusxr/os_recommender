@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Recommender</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: #121212;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen">
+    <h1 class="text-4xl font-extrabold text-center text-blue-400 mb-6">OPERATING SYSTEM</h1>
+    <div class="bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-lg border border-gray-700">
+       
+        <h2 class="text-lg text-center text-gray-300 mb-4">Please choose your required features:</h2>
+        <form id="osForm" class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+                <label class="flex items-center bg-gray-800 p-2 rounded-lg">
+                    <input type="checkbox" class="mr-2" value="lightweight"> Lightweight
+                </label>
+                <label class="flex items-center bg-gray-800 p-2 rounded-lg">
+                    <input type="checkbox" class="mr-2" value="high-performance"> High Performance
+                </label>
+                <label class="flex items-center bg-gray-800 p-2 rounded-lg">
+                    <input type="checkbox" class="mr-2" value="multi-tasking"> Multi-Tasking
+                </label>
+                <label class="flex items-center bg-gray-800 p-2 rounded-lg">
+                    <input type="checkbox" class="mr-2" value="developer-friendly"> Developer-Friendly
+                </label>
+                <label class="flex items-center bg-gray-800 p-2 rounded-lg">
+                    <input type="checkbox" class="mr-2" value="security"> High Security
+                </label>
+                <label class="flex items-center bg-gray-800 p-2 rounded-lg">
+                    <input type="checkbox" class="mr-2" value="low-power"> Low Power Consumption
+                </label>
+                <label class="flex items-center bg-gray-800 p-2 rounded-lg">
+                    <input type="checkbox" class="mr-2" value="server"> Server Usage
+                </label>
+                <label class="flex items-center bg-gray-800 p-2 rounded-lg">
+                    <input type="checkbox" class="mr-2" value="android"> Mobile/Android Application
+                </label>
+            </div>
+            <button type="button" onclick="suggestOS()" class="w-full bg-blue-500 py-2 rounded-lg hover:bg-blue-600 transition duration-300">Submit</button>
+        </form>
+        
+    </div>
+    <h3 class="mt-4 text-lg font-semibold text-center text-gray-300" id="result"></h3>
+
+    <script>
+        function suggestOS() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            let selected = Array.from(checkboxes).map(cb => cb.value);
+            let osRecommendation = "";
+
+            if (selected.includes("lightweight") && selected.includes("low-power")) {
+                osRecommendation = "Chrome OS or Linux (Light Distros)";
+            } else if (selected.includes("high-performance")) {
+                osRecommendation = "Windows or macOS";
+            } else if (selected.includes("multi-tasking")) {
+                osRecommendation = "Windows or Linux";
+            } else if (selected.includes("developer-friendly")) {
+                osRecommendation = "Linux or macOS";
+            } else if (selected.includes("security")) {
+                osRecommendation = "macOS or Linux (Secure Distros)";
+            } else if (selected.includes("server")) {
+                osRecommendation = "Windows Server or Linux Server (Ubuntu, CentOS)";
+            } else if (selected.includes("android")) {
+                osRecommendation = "Android OS or Chrome OS";
+            } else {
+                osRecommendation = "Please select more options for better results.";
+            }
+
+            document.getElementById("result").innerText = " OS: " + osRecommendation;
+        }
+    </script>
+</body>
+</html>
